@@ -13,35 +13,6 @@ class App extends Component {
 
     }
 
-  postImage = () => {
-    fetch('http://localhost:8080/api/file/upload', {
-      method: 'POST',
-      header: new Headers ({
-        'Content-type': 'application/json; charset=utf-8'
-      })
-    })
-    .then((res) => res.text())
-    .then(text => console.log(text))
-    }
-  
-  
-
-
-  getImage = () => {
-    fetch('http://localhost:8080/api/file/2', {
-      method: 'GET',
-      headers: new Headers ({
-        'Content-Type': 'image/jpeg',
-        'Accept': 'image/jpeg'
-      })
-    })
-    .then((res) => res.text())
-    .then(text => console.log(text))
-    .then((text) => {
-      return this.setState({img: text})   
-    })
-  }
-
   handleselectedFile = event => {
     this.setState({
       selectedFile: event.target.files[0],
@@ -64,21 +35,17 @@ class App extends Component {
       .then(res => {
         console.log(res.statusText)
       })
-
   }
 
   
   render() {
     return (
       <div className="App">
-       <button onClick={this.getImage}>Find File </button>
-      <div className="App">
+
         <input type="file" name="" id="" onChange={this.handleselectedFile} />
         <button onClick={this.handleUpload}>Upload</button>
         <div> {Math.round(this.state.loaded,2) } %</div>
     )
-      </div>
-
       </div>
     );
   }
